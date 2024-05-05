@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "Notes.APL": {
+      "commandName": "Project",
+      "hotReloadEnabled": true
+    }
+  }
+}

@@ -1,0 +1,98 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+
+>
+
+    
+    <!--  STATIC  -->
+    
+    <!-- STYLE - BORDER - ГРАНИЦЫ ДЛЯ ГЛАВНОГО ОКНА-->
+    <Style x:Key="Style_Border_MW" TargetType="{x:Type Border}" BasedOn="{StaticResource Style_Border}">
+        <Setter Property="Background" Value="#FBFFFF"/>
+        <Setter Property="BorderBrush" Value="#B8B684"/>
+    </Style>
+
+    <!-- STYLE - BORDER - ГРАНИЦЫ ДЛЯ НАВИГАЦИОННОГО МЕНЮ-->
+    <Style x:Key="Style_Border_MW_NavigationMenu" TargetType="{x:Type Border}" BasedOn="{StaticResource Style_Border}">
+        <Setter Property="Background" Value="#F9FFF7"/>
+        <Setter Property="CornerRadius" Value="10,10,10,10"/>
+        <Setter Property="BorderThickness" Value="2"/>
+        <Setter Property="BorderBrush" Value="#B8B684"/>
+    </Style>
+
+    <!-- STYLE - BORDER - ГРАНИЦЫ ОБЛАСТИ КОНТЕНТА-->
+    <Style x:Key="Style_Border_MW_Content" TargetType="{x:Type Border}" BasedOn="{StaticResource Style_Border}">
+        <Setter Property="Background" Value="#EAF0E9"/>
+        <Setter Property="CornerRadius" Value="10,10,10,10"/>
+        <Setter Property="BorderThickness" Value="2"/>
+        <Setter Property="BorderBrush" Value="#B8B684"/>
+    </Style>
+
+    <!-- STYLE - TEXTBLOCK - ЛЕЙБЛ ДЛЯ ОСНОВНОГО ОКНА-->
+    <Style x:Key="Style_TextBlock_NotesKVR_MW" TargetType="TextBlock" BasedOn="{StaticResource Style_TextBlock_NotesKVR}">
+        <Setter Property="FontSize" Value="20"/>
+    </Style>
+
+    <!-- STYLE - BUTTON - КНОПКИ В TOOLBAR СВОРАЧИВАНИЯ И ЗАКРЫТИЯ ДЛЯ ОСНОВНОГО ОКНА-->
+    <Style x:Key="Style_Button_WrapCloseToolbar_MW" TargetType="Button" BasedOn="{StaticResource Style_Button_WrapCloseToolbar}">
+        <Setter Property="Margin" Value="10 0 0 0"/>
+        <Setter Property="FontSize" Value="15"/>
+    </Style>
+
+
+    <Style x:Key="Style_Label_UserLabel" TargetType="Label">
+        <Setter Property="FontFamily" Value="Sylfaen"/>
+        <Setter Property="FontSize" Value="20"/>
+        <Setter Property="FontWeight" Value="Normal"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+    </Style>
+
+
+    <Style x:Key="NaviButtonStyle" TargetType="{x:Type RadioButton}">
+        <Setter Property="Height" Value="25"/>
+        <Setter Property="Width" Value="210"/>
+        <Setter Property="Margin" Value="0 0 0 0"/>
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="BorderBrush" Value="Transparent"/>
+        <Setter Property="FontFamily" Value="Sylfaen"/>
+        <Setter Property="FontSize" Value="15"/>
+        <Setter Property="FontWeight" Value="Normal"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type RadioButton}">
+                    <Border 
+                    CornerRadius="10"
+                    Background="{TemplateBinding Background}"
+                    BorderThickness="4,0,0,0"        
+                    BorderBrush="{TemplateBinding BorderBrush}"
+                >
+                        <ContentPresenter 
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Center"
+                            Width="{TemplateBinding Width}"
+                            Content="{TemplateBinding Content}"
+                    />
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <!-- При наведении состояние радиокнопки -->
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Margin" Value="7 0 0 0"/>
+                <Setter Property="Background" Value="Khaki"/>
+                <Setter Property="BorderThickness" Value="1"/>
+
+            </Trigger>
+            <Trigger Property="IsChecked" Value="True">
+                <Setter Property="Margin" Value="7 0 0 0"/>
+                <Setter Property="Background" Value="Khaki"/>
+                <Setter Property="BorderThickness" Value="1"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+
+</ResourceDictionary>
+    
