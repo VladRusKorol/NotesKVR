@@ -13,6 +13,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Notes.DAL", "Notes.DB\Notes
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Notes.BLL", "Notes.BL\Notes.BLL.csproj", "{F88856AC-3156-4FA2-8706-774DB63E5C26}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Notes.DAL_SQLite", "Notes.DAL_SQLite\Notes.DAL_SQLite.csproj", "{0F18DDD8-E1BB-4926-9D61-D0ADEA612D7F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -31,6 +33,10 @@ Global
 		{F88856AC-3156-4FA2-8706-774DB63E5C26}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F88856AC-3156-4FA2-8706-774DB63E5C26}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F88856AC-3156-4FA2-8706-774DB63E5C26}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0F18DDD8-E1BB-4926-9D61-D0ADEA612D7F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0F18DDD8-E1BB-4926-9D61-D0ADEA612D7F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0F18DDD8-E1BB-4926-9D61-D0ADEA612D7F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0F18DDD8-E1BB-4926-9D61-D0ADEA612D7F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
