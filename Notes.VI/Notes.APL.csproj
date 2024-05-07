@@ -45,7 +45,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Notes.BL\Notes.BLL.csproj" />
-    <ProjectReference Include="..\Notes.DB\Notes.DAL.csproj" />
   </ItemGroup>
 
   <ItemGroup>

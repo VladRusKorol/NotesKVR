@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Notes.BLL.Models.rec
+namespace Notes.BLL.Models
 {
     public class Image
     {
@@ -13,16 +12,21 @@ namespace Notes.BLL.Models.rec
 
         public byte[] ImageFile { get; set; }
 
-        public string ImageTitle { get; set; } = string.Empty;
+        public string? ImageTitle { get; set; } = string.Empty;
 
         public Image(int prmId, byte[] prmImageFile, string prmTitle)
         {
             this.ImageId = prmId;
-            this.ImageFile = prmImageFile;  
+            this.ImageFile = prmImageFile;
             this.ImageTitle = prmTitle;
         }
-        public Image() { }
+
+        public Image(int prmId, byte[] prmImageFile)
+        {
+            this.ImageId = prmId;
+            this.ImageFile = prmImageFile;
+            this.ImageTitle = null;
+        }
 
     }
-    
 }
