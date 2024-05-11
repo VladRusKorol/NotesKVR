@@ -27,7 +27,6 @@
     <None Remove="Resourse\Images\trash.png" />
     <None Remove="Resourse\Images\user.png" />
     <None Remove="Resourse\Images\users.png" />
-    <None Remove="View\Windows\RegistrationWindow\books.png" />
   </ItemGroup>
 
 	<ItemGroup>
@@ -48,7 +47,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Model\" />
     <Folder Include="Resourse\Fonts\" />
+    <Folder Include="ViewModel\" />
+    <Folder Include="View\" />
   </ItemGroup>
 
 	<ItemGroup>
@@ -113,7 +115,6 @@
 	  <Resource Include="Resourse\Images\users.png">
 	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
 	  </Resource>
-	  <Resource Include="View\Windows\RegistrationWindow\books.png" />
 	</ItemGroup>
 
 	<ItemGroup>
