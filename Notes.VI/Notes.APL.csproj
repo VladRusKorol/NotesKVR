@@ -25,8 +25,10 @@
     <None Remove="Resourse\Images\settings-sliders.png" />
     <None Remove="Resourse\Images\study.png" />
     <None Remove="Resourse\Images\trash.png" />
+    <None Remove="Resourse\Images\up-right-from-square.png" />
     <None Remove="Resourse\Images\user.png" />
     <None Remove="Resourse\Images\users.png" />
+    <None Remove="Resourse\Images\window-minimize.png" />
   </ItemGroup>
 
 	<ItemGroup>
@@ -60,6 +62,12 @@
 		<Content Include="Resourse\Images\ChelAuthorizedAccountBorderBackground.jpeg">
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Resource Include="Resourse\Images\window-minimize.png">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Resource>
 	</ItemGroup>
 
 	<ItemGroup>
@@ -107,6 +115,9 @@
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </Resource>
 	  <Resource Include="Resourse\Images\trash.png">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Resource>
+	  <Resource Include="Resourse\Images\up-right-from-square.png">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </Resource>
 	  <Resource Include="Resourse\Images\user.png">
