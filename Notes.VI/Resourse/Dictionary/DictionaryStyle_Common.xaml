@@ -28,7 +28,8 @@
             <Setter Property="BorderThickness" Value="0"/>
             <Setter Property="FontFamily" Value="{StaticResource NoteBookFontFamily}"/>
             <Setter Property="Cursor" Value="Hand"/>
-            <Setter Property="Padding" Value="5 5 5 5"/>
+            <Setter Property="Padding" Value="2 2 2 2"/>
+            <Setter Property="Margin" Value="5 0 5 0"/>
             <Setter Property="Foreground" Value="#BFBEBE"/>
             <Setter Property="Template">
                 <Setter.Value>

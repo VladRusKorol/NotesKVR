@@ -15,6 +15,7 @@
     <None Remove="Resourse\Images\cross.png" />
     <None Remove="Resourse\Images\diskette.png" />
     <None Remove="Resourse\Images\edit.png" />
+    <None Remove="Resourse\Images\filter.png" />
     <None Remove="Resourse\Images\info.png" />
     <None Remove="Resourse\Images\pencil.png" />
     <None Remove="Resourse\Images\power.png" />
@@ -23,6 +24,7 @@
     <None Remove="Resourse\Images\RepinIE.jpg" />
     <None Remove="Resourse\Images\save.png" />
     <None Remove="Resourse\Images\settings-sliders.png" />
+    <None Remove="Resourse\Images\settings.png" />
     <None Remove="Resourse\Images\study.png" />
     <None Remove="Resourse\Images\trash.png" />
     <None Remove="Resourse\Images\up-right-from-square.png" />
@@ -65,6 +67,12 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Resource Include="Resourse\Images\filter.png">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Resource>
+	  <Resource Include="Resourse\Images\settings.png">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Resource>
 	  <Resource Include="Resourse\Images\window-minimize.png">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </Resource>

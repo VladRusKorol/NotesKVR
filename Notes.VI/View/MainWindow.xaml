@@ -25,11 +25,13 @@
             
             <Grid.RowDefinitions>
                 <RowDefinition Height="30"/>
+                <RowDefinition Height="55"/>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="30"/>
             </Grid.RowDefinitions>
 
-            <Grid Grid.Row="0">
+            <Grid x:Name="FirstLine" 
+                Grid.Row="0">
                 
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
@@ -40,26 +42,15 @@
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
 
-                <StackPanel x:Name="Tools_Сontainer" 
+                <StackPanel x:Name="Notes_Tools_Сontainer" 
                             Grid.Column="0"
                             Orientation="Horizontal" 
                             VerticalAlignment="Center">
 
-                    <!--<Label  Content="Поиск конспекта по названию: " 
-                        FontFamily="Condara"
-                        FontWeight="DemiBold"
-                        FontSize="16"
-                        HorizontalContentAlignment="Left"/>
-
-                    --><!--    Input поиска  --><!--
-                    <TextBox Text="{Binding SearchValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
-                         Width="350"
-                         Style="{StaticResource Style_Control_InputComponent}"/>-->
-
                     <!--    Кнопка добавить конспект -->
                     <Button x:Name="Tooll_Button_Add" 
-                        Style="{StaticResource Style_Button_Add_Delete_NotesPage}" 
-                        Command="{Binding CommandCallEmptyNoteToolWindow_NewEmptyNote}">
+                        Style="{StaticResource Style_Button_WrapCloseToolbar_MW}" 
+                        >
 
                         <Image Source="..\Resourse\Images\add.png"/>
 
@@ -67,17 +58,27 @@
 
                     <!--    Кнопка редактирования конспекта -->
                     <Button x:Name="Tooll_Button_Edit" 
-                        Style="{StaticResource Style_Button_Add_Delete_NotesPage}" 
-                        Command="{Binding CommandCallEmptyNoteToolWindow_EditEmptyNote}">
+                        Style="{StaticResource Style_Button_WrapCloseToolbar_MW}" 
+                        >
                         <Image Source="..\Resourse\Images\edit.png"/>
                     </Button>
 
+                    <!--    Кнопка удалить конспекта -->
                     <Button x:Name="Tooll_Button_Delete" 
-                        Style="{StaticResource Style_Button_Add_Delete_NotesPage}" 
-                        Command="{Binding CommandDeleteEmptyNote}"
+                        Style="{StaticResource Style_Button_WrapCloseToolbar_MW}" 
+                        
                        >
                         <Image Source="..\Resourse\Images\trash.png"/>
                     </Button>
+
+                    <!--Кнопка Чтения конспекта-->
+                    <Button x:Name="Tooll_Button_Read" 
+                        Style="{StaticResource Style_Button_WrapCloseToolbar_MW}" 
+                       >            
+                        <Image Source="..\Resourse\Images\readNote.png"/>
+                    </Button>
+
+
 
 
                 </StackPanel>
@@ -92,6 +93,13 @@
                 <StackPanel x:Name="CloseWrapMaximize_Сontainer" 
                             Orientation="Horizontal"
                             HorizontalAlignment="Right" Grid.Column="2">
+
+                    <Button x:Name="Tooll_Button_Setting" 
+                         Style="{StaticResource Style_Button_WrapCloseToolbar_MW}" 
+                         
+                        >
+                        <Image Source="..\Resourse\Images\settings.png"/>
+                    </Button>
 
                     <Button 
                         x:Name = "btn_Wrap_MW" 
@@ -121,6 +129,51 @@
                 </StackPanel>
 
             </Grid>
+
+            <StackPanel x:Name="SecondLine"
+                        Grid.Row="1"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        Orientation="Horizontal">
+                
+                <Label  Content="ПОИСК КОНСПЕКТА ПО НАЗВАНИЮ: " 
+                        FontFamily="Segoe UI"
+                        FontWeight="DemiBold"
+                        FontSize="16"
+                        HorizontalContentAlignment="Left"
+                        Foreground="#919090"
+                />
+
+                <TextBox Text="{Binding SearchValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                        Width="550"
+                        Style="{StaticResource Style_Control_InputComponent}"
+                />
+
+            </StackPanel>
+
+            <StackPanel x:Name="FourLine"
+                        Grid.Row="3"
+                        Orientation="Horizontal">
+
+                <Label  Content="Количество конспектов: " 
+                        FontFamily="Segoe UI"
+                        FontWeight="DemiBold"
+                        FontSize="16"
+                        HorizontalContentAlignment="Left"
+                        Foreground="#919090"
+                />
+                
+                <Label  Content="{}{ЧИСЛО}" 
+                        FontFamily="Segoe UI"
+                        FontWeight="DemiBold"
+                        FontSize="16"
+                        HorizontalContentAlignment="Left"
+                        Foreground="#919090"
+                />
+
+            </StackPanel>
+            
+            
             
         </Grid>
         
