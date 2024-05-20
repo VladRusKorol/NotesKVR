@@ -10,6 +10,7 @@
 
   <ItemGroup>
     <None Remove="Resourse\Images\add.png" />
+    <None Remove="Resourse\Images\agenda.png" />
     <None Remove="Resourse\Images\align-justify.png" />
     <None Remove="Resourse\Images\cancel.png" />
     <None Remove="Resourse\Images\cross.png" />
@@ -51,9 +52,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Model\" />
     <Folder Include="Resourse\Fonts\" />
-    <Folder Include="ViewModel\" />
     <Folder Include="View\" />
   </ItemGroup>
 
@@ -67,6 +66,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Resource Include="Resourse\Images\agenda.png">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Resource>
 	  <Resource Include="Resourse\Images\filter.png">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </Resource>
