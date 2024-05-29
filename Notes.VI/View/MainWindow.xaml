@@ -159,83 +159,102 @@
             </StackPanel>
 
             <StackPanel x:Name="TreeLine" 
-                        Grid.Row="2"
-                        Orientation="Vertical">
+                ScrollViewer.CanContentScroll="True"
+                Grid.Row="2" 
+                Orientation="Vertical">
                 
-                <ListBox    Margin="5 10 5 5" BorderThickness="0" Background="Transparent" BorderBrush="Transparent"
-                            ItemsSource="{Binding NotesEmpties, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                            SelectedItem="{Binding SelectedNote}">
+                <ListBox Margin="5 10 5 5" BorderThickness="0" Background="Transparent" BorderBrush="Transparent"
+                         Padding="5 10 5 5"
+                         ItemsSource="{Binding NotesEmpties, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                         SelectedItem="{Binding SelectedNote}">
 
                     <ListBox.ItemTemplate>
-                        <DataTemplate >
-                            <StackPanel Orientation="Horizontal">
-                                <Image Source="..\..\..\Resourse\Images\agenda.png" Width="30" Height="30"/>
-                                
-                                <Label Content=" " />
-                                
-                                <Label Content="{Binding NoteOrderBy}" 
-                                        Background="Transparent"
-                                        BorderThickness="0"
-                                        FontSize="16"
-                                        Foreground="#919090"
-                                        FontWeight="SemiBold"
-                                        FontFamily="Segoe UI"
-                                       />
-                                
-                                <Label Content=" " />
-                                
-                                <Button Content="{Binding NoteTitle}"
-                                        Background="Transparent"
-                                        BorderThickness="0"
-                                        FontSize="16"
-                                        Foreground="#919090"
-                                        FontWeight="SemiBold"
-                                        FontFamily="Segoe UI"
-                                        />
-                                
-                                <Label Content=" " />
-                                <Label Content="Создан: " 
-                                       Background="Transparent"
-                                        BorderThickness="0"
-                                        FontSize="16"
-                                        Foreground="#919090"
-                                        FontWeight="SemiBold"
-                                        FontFamily="Segoe UI"
-                                       />
+                        <DataTemplate>
+                            <Border BorderThickness="0 0 0 2" BorderBrush="#919090" CornerRadius="5">
+                                <Grid ShowGridLines="false" Width="{Binding ElementName=TreeLine, Path=ActualWidth}">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="0.08*"/>
+                                        <ColumnDefinition Width="0.05*"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="0.15*"/>
+                                        <ColumnDefinition Width="0.35*"/>
+                                        <ColumnDefinition Width="0.15*"/>
+                                        <ColumnDefinition Width="0.35*"/>
+                                    </Grid.ColumnDefinitions>
 
-                                <Label Content="{Binding NoteCreatedAt}" 
-                                       Background="Transparent"
-                                       BorderThickness="0"
-                                       FontSize="16"
-                                       Foreground="#919090"
-                                       FontWeight="SemiBold"
-                                       FontFamily="Segoe UI"
-                                       />
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="30"/>
+                                    </Grid.RowDefinitions>
 
-                                <Label Content=" " />
-                                <Label Content="Изменен: " 
-                                       Background="Transparent"
-                                       BorderThickness="0"
-                                       FontSize="16"
-                                       Foreground="#919090"
-                                       FontWeight="SemiBold"
-                                       FontFamily="Segoe UI"
-                                       />
+                                    <Image Grid.Column="0" Grid.Row="0" 
+                                           Source="..\..\..\Resourse\Images\agenda.png" 
+                                           Width="30" 
+                                           Height="30"/>
 
-                                <Label Content="{Binding NoteUpdatedAt}" 
-                                        Background="Transparent"
-                                        BorderThickness="0"
-                                        FontSize="16"
-                                        Foreground="#919090"
-                                        FontWeight="SemiBold"
-                                        FontFamily="Segoe UI"
-                                        />
+                                    <Label  Grid.Column="1" Grid.Row="0"
+                                            Content="{Binding NoteOrderBy}" 
+                                            Background="Transparent"
+                                            BorderThickness="0"
+                                            FontSize="16"
+                                            Foreground="#919090"
+                                            FontWeight="SemiBold"
+                                            FontFamily="Segoe UI"/>
 
-                            </StackPanel>
+                                    <Button Grid.Column="2" Grid.Row="0" HorizontalAlignment="Left"
+                                                Content="{Binding NoteTitle}"
+                                                Background="Transparent"
+                                                BorderThickness="0"
+                                                FontSize="16"
+                                                Foreground="#919090"
+                                                FontWeight="SemiBold"
+                                                FontFamily="Segoe UI"/>
+
+                                    <Label  Grid.Column="3" Grid.Row="0"
+                                                Content="Создан: " 
+                                                Background="Transparent"
+                                                BorderThickness="0"
+                                                FontSize="16"
+                                                Foreground="#919090"
+                                                FontWeight="SemiBold"
+                                                FontFamily="Segoe UI"/>
+
+                                    <Label  Grid.Column="4" Grid.Row="0"
+                                                Content="{Binding NoteCreatedAt}" 
+                                                Background="Transparent"
+                                                BorderThickness="0"
+                                                FontSize="16"
+                                                Foreground="#919090"
+                                                FontWeight="SemiBold"
+                                                FontFamily="Segoe UI"/>
+
+                                    <Label  Grid.Column="5"   Grid.Row="0"
+                                                Content="Изменен: " 
+                                                Background="Transparent"
+                                                BorderThickness="0"
+                                                FontSize="16"
+                                                Foreground="#919090"
+                                                FontWeight="SemiBold"
+                                                FontFamily="Segoe UI"
+                                                />
+
+                                    <Label  Grid.Column="6" Grid.Row="0"
+                                                Content="{Binding NoteUpdatedAt}" 
+                                                Background="Transparent"
+                                                BorderThickness="0"
+                                                FontSize="16"
+                                                Foreground="#919090"
+                                                FontWeight="SemiBold"
+                                                FontFamily="Segoe UI"/>
+
+                                </Grid>
+
+                            </Border>
                         </DataTemplate>
                     </ListBox.ItemTemplate>
                 </ListBox>
-
+                
+                
+                
             </StackPanel>
             
             <StackPanel x:Name="FourLine"
@@ -250,7 +269,7 @@
                         Foreground="#919090"
                 />
                 
-                <Label  Content="{}{ЧИСЛО}" 
+                <Label  Content="{Binding NotesCount}" 
                         FontFamily="Segoe UI"
                         FontWeight="DemiBold"
                         FontSize="16"
@@ -259,9 +278,7 @@
                 />
 
             </StackPanel>
-            
-            
-            
+                        
         </Grid>
         
         

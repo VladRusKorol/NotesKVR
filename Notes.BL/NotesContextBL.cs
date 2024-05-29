@@ -39,6 +39,11 @@ namespace Notes.BL
             this._notesDB.SaveChanges();
         }
 
+        public int  getCountNote()
+        {
+            return this._notesDB.Notes.Count();
+        }
+
         public void EditNoteTitle(int NoteId, string newNoteTitle)
         {
             List<DAL_SQLite.Models.Note>? editNote = this._notesDB.Notes.Where(_ => _.Id == NoteId).ToList();
@@ -53,43 +58,52 @@ namespace Notes.BL
         public void EditNoteOrderBy(int NoteId, int newOrderBy)
         {
 
-            /*  TODO доделать изменение сортировки указанием индекса    */
+            //Запрашиваем запись в которой хотим изменить индекс сортировки
+            int? currentOrderBy = this._notesDB.Notes.Where(n => n.Id == NoteId).FirstOrDefault().OrderBy;
+            //Получем максимальный индекс сортировки что бы не выйти за пределы индекса сортировки
+            int maxOrderBy = this._notesDB.Notes.Count();
+            
 
-
-
-            /*  Проверяем что бы новый сортировочный индекс не равнялся текущему    */
-            if(this._notesDB.Notes.Where(note => note.Id == NoteId).ToList()[0].OrderBy != newOrderBy)
+            //Если мы получили запись, и при этом индекс отличется и не выход за пределы массива то изменяем
+            if (currentOrderBy is not null && currentOrderBy != newOrderBy && newOrderBy >= 1 && newOrderBy <= maxOrderBy)
             {
-                var tmp = this._notesDB.Notes.Where(note => note.Id == NoteId).ToList();
-                int oldOrderBy = 4; 
-                List<DAL_SQLite.Models.Note> notes = this._notesDB.Notes.OrderBy(note => note.OrderBy).ToList();
-                notes[NoteId].OrderBy = newOrderBy;
-                /*   Если смещение сортировки идет ниже по списку   */
-                if(oldOrderBy < newOrderBy)
+                string vector = currentOrderBy < newOrderBy ? "up" : "down";
+                List<DAL_SQLite.Models.Note> currentNoteList = this._notesDB.Notes.OrderBy(n => n.OrderBy).ToList();
+
+                if (vector == "up")
                 {
-                    for(int i = 0; i < notes.Count; i++)
+                    for (int i = 0; i < currentNoteList.Count; i++)
                     {
-                        if (notes[i].OrderBy < oldOrderBy && notes[i].OrderBy > newOrderBy && notes[i].Id != NoteId) notes[i].OrderBy = notes[i].OrderBy - 1;
-                        else if (notes[i].OrderBy > newOrderBy && notes[i].Id != NoteId) notes[i].OrderBy = notes[i].OrderBy + 1;
+                        if (currentNoteList[i].OrderBy < currentOrderBy) { }
+
+                        else if (currentNoteList[i].OrderBy > newOrderBy) { }
+
+                        else if (currentNoteList[i].OrderBy == currentOrderBy) currentNoteList[i].OrderBy = newOrderBy;
+
+                        else if (currentNoteList[i].OrderBy > currentOrderBy && currentNoteList[i].OrderBy <= newOrderBy) currentNoteList[i].OrderBy = currentNoteList[i].OrderBy - 1;
+
                     }
                 }
-                /*   Если смещение сортировки идет выше по списку   */
-                else if (oldOrderBy > newOrderBy)
+                else
                 {
-                    for (int i = 0; i < notes.Count; i++)
+                    for (int i = 0; i < currentNoteList.Count; i++)
                     {
-                        if (notes[i].OrderBy < oldOrderBy && notes[i].OrderBy > newOrderBy && notes[i].Id != NoteId) notes[i].OrderBy = notes[i].OrderBy - 1;
-                        else if (notes[i].OrderBy > newOrderBy && notes[i].Id != NoteId) notes[i].OrderBy = notes[i].OrderBy + 1;
+                        if (currentNoteList[i].OrderBy < newOrderBy) { }
+
+                        else if (currentNoteList[i].OrderBy > currentOrderBy) { }
+
+                        else if (currentNoteList[i].OrderBy == currentOrderBy) currentNoteList[i].OrderBy = newOrderBy;
+
+                        else if (currentNoteList[i].OrderBy < currentOrderBy && currentNoteList[i].OrderBy >= newOrderBy) currentNoteList[i].OrderBy = currentNoteList[i].OrderBy + 1;
                     }
+
                 }
-
-                this._notesDB.SaveChanges();
-            }            
-        }
-
-        public void EditNoteOrderBy2(int NoteId, int newOrderBy)
-        {
-            List<DAL_SQLite.Models.Note>? editNote = this._notesDB.Notes.Where(_ => _.Id == NoteId).ToList();
+            }
+            else
+            {
+              
+            }
+            this._notesDB.SaveChanges();
         }
 
     }

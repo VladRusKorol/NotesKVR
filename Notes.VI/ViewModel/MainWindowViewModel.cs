@@ -29,6 +29,14 @@ namespace Notes.APL.ViewModel
             set { SetField(ref _searchValue, value); this._filterebleNotesEmpties.OnFilterChanged(value); }
         }
 
+        private int _notesCount; 
+        public int NotesCount
+        {
+            get => _notesCount;
+            set => SetField(ref _notesCount, value);
+        }
+
+
         //Наблюдаемая коллекция которая будет ссылаться на публичную коллекцию в FilterableObservableCollectionGeneric
         public ObservableCollection<EmptyNote> _notesEmpties;
         public ObservableCollection<EmptyNote> NotesEmpties
@@ -64,22 +72,25 @@ namespace Notes.APL.ViewModel
             this._filterebleNotesEmpties.getActualCollectionFromDB = updateObservableCollectionNotesEmpty;
             this._filterebleNotesEmpties.OnInitOrUpdateObservableCollections();
             this._notesEmpties = this._filterebleNotesEmpties._publicCollection;
+            updateCount();
 
             this.CommandCallEmptyNoteToolWindow_NewEmptyNote = new LambdaCommand(
                     canExecute: _ => true,
                     execute: _ => {
-                        var emptyNoteToolWindow = new EmptyNoteToolWindow(this._context,  0, "New", "", 0, this._filterebleNotesEmpties);
+                        var emptyNoteToolWindow = new EmptyNoteToolWindow(this._context,  0, "New", "", 0, this._filterebleNotesEmpties, updateCount);
                         emptyNoteToolWindow.DataContext = this;
                         emptyNoteToolWindow.Show();
+                        updateCount();
                     }
                    );
 
             this.CommandCallEmptyNoteToolWindow_EditEmptyNote = new LambdaCommand(
                     canExecute: _ => this.SelectedNote is not null,
                     execute: _ => {
-                        var emptyNoteToolWindow = new EmptyNoteToolWindow(this._context,  this.SelectedNote.NoteId, "Edit", this.SelectedNote.NoteTitle, this.SelectedNote.NoteOrderBy, this._filterebleNotesEmpties);
+                        var emptyNoteToolWindow = new EmptyNoteToolWindow(this._context,  this.SelectedNote.NoteId, "Edit", this.SelectedNote.NoteTitle, this.SelectedNote.NoteOrderBy, this._filterebleNotesEmpties, updateCount);
                         emptyNoteToolWindow.DataContext = this;
                         emptyNoteToolWindow.Show();
+                        updateCount();
                     }
                    );
             this.CommandDeleteEmptyNote = new LambdaCommand(
@@ -87,8 +98,10 @@ namespace Notes.APL.ViewModel
                     execute: _ => {
                         this._context.DeleteNote(SelectedNote.NoteId);
                         this._filterebleNotesEmpties.OnInitOrUpdateObservableCollections();
+                        updateCount();
                     }
                    );
+
             //this.CommandCollapsedEmptyNote = new LambdaCommand(
             //        canExecute: _ => true,
             //        execute: _ => {
@@ -114,6 +127,12 @@ namespace Notes.APL.ViewModel
             var notes = this._context.GetNotes().Select(a => Mapper.BLL_to_APL_EmptyNotes(a)).ToList(); 
             return new ObservableCollection<EmptyNote>(notes);
         }
+
+        private void updateCount()
+        {
+            NotesCount = this._context.getCountNote(); 
+        }
+
 
         //private ObservableCollection<Definition> updateObservableCollectionDefinition()
         //{

@@ -4,6 +4,7 @@ using Notes.APL.Model;
 using Notes.BL;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,6 +20,8 @@ using System.Windows.Shapes;
 namespace Notes.APL.Common.EmptyNoteToolWindow
 {
 
+    public delegate void updateCountNotes();
+
     public partial class EmptyNoteToolWindow : Window
     {
         private NotesContextBL notesContextBL;
@@ -26,8 +29,17 @@ namespace Notes.APL.Common.EmptyNoteToolWindow
         private string ActionFlag;
         private FilterableObservableCollectionGeneric<EmptyNote> localFilterebleNotesEmpties;
         private int OrderValue;
+        private updateCountNotes localUpdateCount; 
 
-        public EmptyNoteToolWindow(NotesContextBL _context, int noteId, string newActionFlag, string incomingValue, int incomingOrderValue, FilterableObservableCollectionGeneric<EmptyNote> _filterebleNotesEmpties)
+        public EmptyNoteToolWindow(
+            NotesContextBL _context, 
+            int noteId, 
+            string newActionFlag, 
+            string incomingValue, 
+            int incomingOrderValue, 
+            FilterableObservableCollectionGeneric<EmptyNote> _filterebleNotesEmpties, 
+            updateCountNotes updateCount
+        )
         {
             InitializeComponent();
 
@@ -36,6 +48,7 @@ namespace Notes.APL.Common.EmptyNoteToolWindow
             this.localFilterebleNotesEmpties = _filterebleNotesEmpties;
             this.NoteId = noteId;
             this.OrderValue = incomingOrderValue;
+            this.localUpdateCount = updateCount;
 
             if (newActionFlag == "Edit") {
                 Input.Text = incomingValue;
@@ -68,9 +81,10 @@ namespace Notes.APL.Common.EmptyNoteToolWindow
             if (ActionFlag == "New") notesContextBL.AddNote(inputValue);
             else {
                 notesContextBL.EditNoteTitle(NoteId, inputValue);
-                notesContextBL.EditNoteOrderBy2(NoteId, Convert.ToInt32(InputOrder.Text));
+                notesContextBL.EditNoteOrderBy(NoteId, Convert.ToInt32(InputOrder.Text));
             }
             localFilterebleNotesEmpties.OnInitOrUpdateObservableCollections();
+            this.localUpdateCount();
             this.Close();
         }
 
