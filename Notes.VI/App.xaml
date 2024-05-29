@@ -40,8 +40,10 @@
 
             </ResourceDictionary.MergedDictionaries>
 
+            <sys:Int32 x:Key="SelectedNoteId">0</sys:Int32>
             
         </ResourceDictionary>
+        
 
     </Application.Resources>
     

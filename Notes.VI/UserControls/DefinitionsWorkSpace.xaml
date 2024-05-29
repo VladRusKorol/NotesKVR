@@ -6,21 +6,88 @@
              xmlns:local="clr-namespace:Notes.APL.UserControls"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid x:Name="MainGrid">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="0.25*" x:Name="MainGridFirstColumn"/>
-            <ColumnDefinition Width="0.75*"/>
-        </Grid.ColumnDefinitions>
 
-        <ListView Grid.Column="0" SelectionChanged="ListView_SelectionChanged">
-            <ListView.View>
-                <GridView>
-                    <GridViewColumn Header="Определение" Width="{Binding ElementName=MainGridFirstColumn, Path=MaxWidth}"/>
-                </GridView>
-            </ListView.View>
-        </ListView>
-    
-    </Grid>
-    
+    <Border Style="{StaticResource Style_Border_MW}">
+        <StackPanel x:Name="MainGrid">
+            
+            <StackPanel x:Name="FirstLine" 
+                        Orientation="Horizontal">
+
+                <Label Content="Номер определения : "
+                       Width="175"
+                       FontFamily="Segoe UI"
+                       FontWeight="DemiBold"
+                       FontSize="16"
+                       HorizontalContentAlignment="Left"
+                       Foreground="#919090"
+                />
+
+                <Label Content="{}{Binding DefinitionOrderBy}"
+                       Width="250"
+                       FontFamily="Segoe UI"
+                       FontWeight="Bold"
+                       FontSize="16"
+                       HorizontalContentAlignment="Left"
+                       Foreground="#4B4A4A"
+                />
+
+            </StackPanel>
+
+            <StackPanel x:Name="SecondLine" 
+                        Orientation="Horizontal">
+
+                <Label Content="Определение: "
+                       Width="120"
+                       FontFamily="Segoe UI"
+                       FontWeight="DemiBold"
+                       FontSize="16"
+                       HorizontalContentAlignment="Left"
+                       Foreground="#919090"
+                />
+
+                <Label Content="{}{Binding DefinitionTitle}"
+                       Width="660"
+                       FontFamily="Segoe UI"
+                       FontWeight="Bold"
+                       FontSize="16"
+                       HorizontalContentAlignment="Left"
+                       Foreground="#4B4A4A"
+                />
+
+            </StackPanel>
+
+            <StackPanel x:Name="ThirdLine" 
+                        Orientation="Horizontal">
+
+                <Label Content="Описание: "
+                       Width="120"
+                       FontFamily="Segoe UI"
+                       FontWeight="DemiBold"
+                       FontSize="16"
+                       HorizontalContentAlignment="Left"
+                       Foreground="#919090"
+                />
+
+                <Label Content="{}{Binding DefinitionDesc}"
+                       Width="660"
+                       FontFamily="Segoe UI"
+                       FontWeight="Bold"
+                       FontSize="16"
+                       HorizontalContentAlignment="Left"
+                       Foreground="#4B4A4A"
+                />
+
+            </StackPanel>
+
+            <ListBox>
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Image/>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+            
+        </StackPanel>
+    </Border>
 
 </UserControl>

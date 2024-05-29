@@ -169,8 +169,6 @@
                         Foreground="#919090"
                 />
 
-
-
                 <TextBox    Text="{Binding SearchValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
                             Width="550"
                             Style="{StaticResource Style_Control_InputComponent}"

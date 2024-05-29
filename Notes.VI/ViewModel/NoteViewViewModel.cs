@@ -9,9 +9,10 @@ namespace Notes.APL.ViewModel
 {
     public class NoteViewViewModel: BaseINPC
     {
+
         public NoteViewViewModel() 
         {
-        
+            
         }
     }
 }
