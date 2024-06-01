@@ -1,0 +1,142 @@
+﻿<Window x:Class="Notes.APL.Common.EmptyDefToolWindow.EmptyDefToolWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Notes.APL.Common.EmptyDefToolWindow"
+        mc:Ignorable="d"
+        Background="Transparent"
+        Title="EmptyDefToolWindow" Height="700" Width="800">
+    
+    
+    
+    <Window.Resources>
+        <Style x:Key="Style_Button_Save_Close_ENTW" TargetType="Button">
+            <Setter Property="FontFamily" Value="Condara"/>
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="Background" Value="#F3F4CF"/>
+            <Setter Property="BorderBrush" Value="DarkKhaki"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="FontWeight" Value="Normal"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border>
+                            <Border CornerRadius="10"
+                            Background="{TemplateBinding Background}"    
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                    >
+                                <ContentPresenter 
+                                Content="{TemplateBinding Content}" 
+                                HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                        />
+                            </Border>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="BorderBrush" Value="Khaki"/>
+                    <Setter Property="Background" Value="LightGoldenrodYellow"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
+
+    <Border Style="{StaticResource Style_Border}">
+        
+        <Border.Background>
+            <SolidColorBrush>
+                #eaf0e9
+            </SolidColorBrush>
+        </Border.Background>
+
+        <StackPanel HorizontalAlignment="Center" Width="700">
+
+            <Label  Content="НАЗВАНИЕ ОПРЕДЕЛЕНИЯ"
+                    FontFamily="Condara"
+                    FontWeight="DemiBold"
+                    FontSize="20"
+                    Margin="0 10 0 0"
+                    HorizontalContentAlignment="Center"
+                    Background="Transparent"
+            />
+
+            <TextBox x:Name="InputTitleDef" Style="{StaticResource Style_Control_InputComponent}" Margin="0 10 0 0"/>
+
+            <StackPanel x:Name="StackOrderBy" Orientation="Horizontal" HorizontalAlignment="Center" Width="550">
+
+                <Label  Content="Номер сортировки"
+                        FontFamily="Condara"
+                        FontWeight="DemiBold"
+                        FontSize="20"
+                        Margin="0 10 0 0"
+                        HorizontalContentAlignment="Center"
+                        Background="Transparent"
+                        Width="300"/>
+
+                <TextBox x:Name="InputOrder" Style="{StaticResource Style_Control_InputComponent}" Width="200" />
+
+            </StackPanel>
+
+            <Label  Content="ОПИСАНИЕ ОПРЕДЕЛЕНИЯ"
+                    FontFamily="Condara"
+                    FontWeight="DemiBold"
+                    FontSize="20"
+                    Margin="0 10 0 0"
+                    HorizontalContentAlignment="Center"
+                    Background="Transparent"
+            />
+
+            <TextBox x:Name="InputDescDef" Style="{StaticResource Style_Control_InputComponent}" Margin="0 10 0 0" Height="200"/>
+
+            
+            
+            
+            
+            
+            <!--<ListBox Margin="0 10 0 0" >
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <Image Margin="3" Source="{Binding }"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>-->
+            
+            
+            
+            
+            
+            
+            <StackPanel Orientation="Horizontal" Margin="0 10 0 0" >
+
+                <Grid Width="700">
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <Button Grid.Column="0" Content="Сохранить" Width="200" Style="{StaticResource Style_Button_Save_Close_ENTW}" Click="SaveEditDef"/>
+
+                    <Button Grid.Column="1" Content="Отмена" Width="200" Style="{StaticResource Style_Button_Save_Close_ENTW}" Click="CloseWindow"/>
+
+                </Grid>
+
+            </StackPanel>
+
+
+
+
+        </StackPanel>
+
+    </Border>
+
+
+
+</Window>

@@ -8,10 +8,18 @@
              d:DesignHeight="450" d:DesignWidth="800">
 
     <Border Style="{StaticResource Style_Border_MW}">
+        
         <StackPanel x:Name="MainGrid">
-
+            
             <StackPanel x:Name="FirstLine" 
-                        Orientation="Horizontal">
+                        Orientation="Horizontal" Height="35">
+
+                <Button x:Name="Tooll_Button_Edit" 
+                    Style="{StaticResource Style_Button_WrapCloseToolbar_MW}" 
+                    Command="{Binding CommandCallEmptyNoteToolWindow_EditEmptyNote}"
+                >
+                    <Image Source="..\Resourse\Images\edit.png"/>
+                </Button>
 
                 <Label Content="Номер определения : "
                        Width="175"
@@ -22,7 +30,7 @@
                        Foreground="#919090"
                 />
 
-                <Label Content="{}{Binding DefinitionOrderBy}"
+                <Label Content="{}{Binding DefinitionId}"
                        Width="250"
                        FontFamily="Segoe UI"
                        FontWeight="Bold"
@@ -30,6 +38,7 @@
                        HorizontalContentAlignment="Left"
                        Foreground="#4B4A4A"
                 />
+                
 
             </StackPanel>
 
@@ -52,6 +61,46 @@
                        FontSize="16"
                        HorizontalContentAlignment="Left"
                        Foreground="#4B4A4A"
+                />
+
+            </StackPanel>
+            <StackPanel x:Name="SecondOneLine" 
+                        Orientation="Horizontal">
+
+                <Label Content="Создан: "
+                        Width="120"
+                        FontFamily="Segoe UI"
+                        FontWeight="DemiBold"
+                        FontSize="16"
+                        HorizontalContentAlignment="Left"
+                        Foreground="#919090"
+                />
+
+                <Label Content="{}{Binding DefinitionCreatedAt}"
+                        Width="250"
+                        FontFamily="Segoe UI"
+                        FontWeight="Bold"
+                        FontSize="16"
+                        HorizontalContentAlignment="Left"
+                        Foreground="#4B4A4A"
+                />
+
+                <Label Content="Обновлен: "
+                        Width="120"
+                        FontFamily="Segoe UI"
+                        FontWeight="DemiBold"
+                        FontSize="16"
+                        HorizontalContentAlignment="Left"
+                        Foreground="#919090"
+                />
+
+                <Label Content="{}{Binding DefinitionUpdateAt}"
+                        Width="250"
+                        FontFamily="Segoe UI"
+                        FontWeight="Bold"
+                        FontSize="16"
+                        HorizontalContentAlignment="Left"
+                        Foreground="#4B4A4A"
                 />
 
             </StackPanel>

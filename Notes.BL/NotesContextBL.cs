@@ -1,3 +1,4 @@
+using Microsoft.EntityFrameworkCore;
 using Notes.BLL.Mappers;
 using Notes.DAL_SQLite;
 using System.Security.Cryptography.X509Certificates;
@@ -118,7 +119,26 @@ namespace Notes.BL
             this._notesDB.SaveChanges();
         }
 
-
+        public List<Notes.BLL.Models.Definition> GetDefinitions()
+        {
+            return this._notesDB.Definitions.OrderBy(d => d.OrderBy)
+                                            .Include(d => d.Images)
+                                            .Select(d => Mapper.DAL_to_BLL_Definitions(d))
+                                            .ToList();
+        }
+    
+        public void AddDef(int noteId, string defTitle, string defDesc)
+        {
+            int orderBy = this._notesDB.Definitions.Where(d => d.NoteId == noteId).Count() != 0 ? this._notesDB.Definitions.Where(d => d.NoteId == noteId).Max(note => note.OrderBy) + 1 : 1;
+            DAL_SQLite.Models.Definition newDef = new DAL_SQLite.Models.Definition
+            {
+                NoteId = noteId,
+                Title = defTitle,
+                Text = defDesc,
+                CreatedAt = DateTime.Now,
+                UpdatedAt = DateTime.Now,
+            }; 
+        }
     }
 
 }

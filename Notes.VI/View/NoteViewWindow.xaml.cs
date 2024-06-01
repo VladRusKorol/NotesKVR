@@ -1,4 +1,5 @@
 ﻿using Notes.APL.Common;
+using Notes.APL.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,6 +26,7 @@ namespace Notes.APL.View
         public NoteViewWindow()
         {
             InitializeComponent();
+            this.DataContext = new NoteViewViewModel();
             this.MaxHeight = SystemParameters.MaximizedPrimaryScreenHeight;
         }
 
