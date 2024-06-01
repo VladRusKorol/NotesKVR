@@ -9,7 +9,7 @@
 
     <Border Style="{StaticResource Style_Border_MW}">
         <StackPanel x:Name="MainGrid">
-            
+
             <StackPanel x:Name="FirstLine" 
                         Orientation="Horizontal">
 

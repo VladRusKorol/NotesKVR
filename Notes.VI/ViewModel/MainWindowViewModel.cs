@@ -2,6 +2,7 @@
 using Notes.APL.Common.EmptyNoteToolWindow;
 using Notes.APL.Common.FilterableObservableCollectionGeneric;
 using Notes.APL.Model;
+using Notes.APL.View;
 using Notes.BL;
 using System.Collections.ObjectModel;
 using System.Windows;
@@ -53,15 +54,22 @@ namespace Notes.APL.ViewModel
             set => SetField(ref _selectedNote, value);
         }
 
+        private int _countTools;
+        public int CountTools
+        {
+            get => _countTools;
+            set => SetField(ref _countTools, value);
+        }
+
 
         /*========================    КОММАНДЫ КЛАССА    ======================*/
         public LambdaCommand CommandCallEmptyNoteToolWindow_NewEmptyNote { get; set; }
         public LambdaCommand CommandCallEmptyNoteToolWindow_EditEmptyNote { get; set; }
         public LambdaCommand CommandDeleteEmptyNote { get; set; }
-        public LambdaCommand CommandCollapsedEmptyNote { get; set; }
+        public LambdaCommand CommandOpenNoteViewWindow { get; set; }
 
 
-
+        public LambdaCommand CommandUpdate { get; set; }
 
 
 
@@ -75,8 +83,9 @@ namespace Notes.APL.ViewModel
             updateCount();
 
             this.CommandCallEmptyNoteToolWindow_NewEmptyNote = new LambdaCommand(
-                    canExecute: _ => true,
+                    canExecute: _ => WindowsOpenController.ICanOpenThisWindow("EmptyNoteToolWindow"),
                     execute: _ => {
+                        WindowsOpenController.ChangeCountOpenThisWindow("EmptyNoteToolWindow");
                         var emptyNoteToolWindow = new EmptyNoteToolWindow(this._context,  0, "New", "", 0, this._filterebleNotesEmpties, updateCount);
                         emptyNoteToolWindow.DataContext = this;
                         emptyNoteToolWindow.Show();
@@ -85,8 +94,9 @@ namespace Notes.APL.ViewModel
                    );
 
             this.CommandCallEmptyNoteToolWindow_EditEmptyNote = new LambdaCommand(
-                    canExecute: _ => this.SelectedNote is not null,
+                    canExecute: _ => WindowsOpenController.ICanOpenThisWindow("EmptyNoteToolWindow") && this.SelectedNote is not null,
                     execute: _ => {
+                        WindowsOpenController.ChangeCountOpenThisWindow("EmptyNoteToolWindow");
                         var emptyNoteToolWindow = new EmptyNoteToolWindow(this._context,  this.SelectedNote.NoteId, "Edit", this.SelectedNote.NoteTitle, this.SelectedNote.NoteOrderBy, this._filterebleNotesEmpties, updateCount);
                         emptyNoteToolWindow.DataContext = this;
                         emptyNoteToolWindow.Show();
@@ -94,25 +104,30 @@ namespace Notes.APL.ViewModel
                     }
                    );
             this.CommandDeleteEmptyNote = new LambdaCommand(
-                    canExecute: _ => this.SelectedNote is not null,
+                    canExecute: _ => WindowsOpenController.ICanOpenThisWindow("EmptyNoteToolWindow") && this.SelectedNote is not null,
                     execute: _ => {
+                        
                         this._context.DeleteNote(SelectedNote.NoteId);
                         this._filterebleNotesEmpties.OnInitOrUpdateObservableCollections();
                         updateCount();
                     }
                    );
 
-            //this.CommandCollapsedEmptyNote = new LambdaCommand(
-            //        canExecute: _ => true,
-            //        execute: _ => {
-            //            this.StakcPanel_EmptyNotes_Visibility = Visibility.Collapsed;
-            //            var w = new Page();
-            //            w.Title = "Тук Тук";
-            //            w.Visibility = Visibility.Visible;
+            this.CommandOpenNoteViewWindow = new LambdaCommand(
+                    canExecute: _ => WindowsOpenController.ICanOpenThisWindow("NoteViewWindow") && this.SelectedNote is not null,
+                    execute: _ =>
+                    {
+                        WindowsOpenController.ChangeCountOpenThisWindow("NoteViewWindow");
+                        Application.Current.Resources["SelectedNoteId"] = this.SelectedNote.NoteId;
+                        var openViewWindow = new NoteViewWindow();
+                        openViewWindow.Show();
+                    }
+                   );
 
-            //        }
-            //       );
-
+            this.CommandUpdate = new LambdaCommand(
+                canExecute: _ => true,
+                execute: _ => CountTools = (int)Application.Current.Resources["EmptyNoteToolWindow"]
+            );
         }
 
 

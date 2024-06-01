@@ -85,13 +85,19 @@
 
                 </StackPanel>
 
-                <TextBlock   x:Name="MainLabel"
-                             Grid.Column="1"
-                             Text="Junior's Notes" 
-                             Style="{StaticResource Style_TextBlock_NotesKVR_MW}"
-                             FontSize="30"
-                />
-
+                <StackPanel Grid.Column="1" Orientation="Horizontal">
+                    <TextBlock   x:Name="MainLabel"
+                                 Text="Junior's Notes" 
+                                 Style="{StaticResource Style_TextBlock_NotesKVR_MW}"
+                                 FontSize="30"
+                    />
+                    <Label Content="    "/>
+                    <TextBlock   x:Name="NameNoteLabel"
+                                 Text="{Binding NoteName}" 
+                                 Style="{StaticResource Style_TextBlock_NotesKVR_MW}"
+                                 FontSize="30"
+                    />
+                </StackPanel>
                 <StackPanel  x:Name="CloseWrapMaximize_Сontainer" 
                              Orientation="Horizontal"
                              HorizontalAlignment="Right" Grid.Column="2">
@@ -176,6 +182,8 @@
 
             </StackPanel>
 
+            
+            
         </Grid>
     </Border>
 

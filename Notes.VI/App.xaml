@@ -7,7 +7,6 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:sys="clr-namespace:System;assembly=mscorlib"
              xmlns:col="clr-namespace:System.Collections;assembly=mscorlib"
-             
              StartupUri=".\View\MainWindow.xaml"
 >
     
@@ -42,6 +41,9 @@
 
             <sys:Int32 x:Key="SelectedNoteId">0</sys:Int32>
             
+            <sys:Int32 x:Key="NoteViewWindow">0</sys:Int32>
+            <sys:Int32 x:Key="EmptyNoteToolWindow">0</sys:Int32>
+
         </ResourceDictionary>
         
 

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Notes.APL.Common;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices;
@@ -47,7 +48,8 @@ namespace Notes.APL.View
 
         public void btn_Close_MW_Click(object sender, RoutedEventArgs e)
         {
-            Application.Current.Shutdown();
+            WindowsOpenController.ChangeCountCloseThisWindow("NoteViewWindow");
+            this.Close();
         }
 
         public void btn_Max_MW_Click(object sender, RoutedEventArgs e)

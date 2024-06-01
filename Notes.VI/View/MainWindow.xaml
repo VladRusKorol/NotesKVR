@@ -80,7 +80,8 @@
 
                     <!--Кнопка Чтения конспекта-->
                     <Button x:Name="Tooll_Button_Read" 
-                        Style="{StaticResource Style_Button_WrapCloseToolbar_MW}" 
+                            Style="{StaticResource Style_Button_WrapCloseToolbar_MW}" 
+                            Command="{Binding CommandOpenNoteViewWindow}"
                        >            
                         <Image Source="..\Resourse\Images\readNote.png"/>
                     </Button>
@@ -276,6 +277,16 @@
                         HorizontalContentAlignment="Left"
                         Foreground="#919090"
                 />
+
+                <Label  Content="{Binding CountTools}" 
+                        FontFamily="Segoe UI"
+                        FontWeight="DemiBold"
+                        FontSize="16"
+                        HorizontalContentAlignment="Left"
+                        Foreground="#919090"
+                />
+
+                <Button Content="Upd" Command="{Binding CommandUpdate}"/>
 
             </StackPanel>
                         

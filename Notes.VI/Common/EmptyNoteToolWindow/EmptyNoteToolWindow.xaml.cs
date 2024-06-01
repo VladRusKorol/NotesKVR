@@ -72,6 +72,7 @@ namespace Notes.APL.Common.EmptyNoteToolWindow
 
         private void CloseWindow(object sender, RoutedEventArgs e)
         {
+            WindowsOpenController.ChangeCountCloseThisWindow("EmptyNoteToolWindow");
             this.Close();
         }
 
@@ -85,6 +86,7 @@ namespace Notes.APL.Common.EmptyNoteToolWindow
             }
             localFilterebleNotesEmpties.OnInitOrUpdateObservableCollections();
             this.localUpdateCount();
+            WindowsOpenController.ChangeCountCloseThisWindow("EmptyNoteToolWindow");
             this.Close();
         }
 

@@ -34,15 +34,27 @@ namespace Notes.BL
 
         public void DeleteNote(int NoteId)
         {
-            List<DAL_SQLite.Models.Note> deleteNote = this._notesDB.Notes.Where(note => note.Id == NoteId).ToList();
-            this._notesDB.Notes.Remove(deleteNote[0]);
+            DAL_SQLite.Models.Note? deleteNote = this._notesDB.Notes.Where(note => note.Id == NoteId).FirstOrDefault();
+            int delOrderBy = (int)deleteNote.OrderBy;
+
+            this._notesDB.Notes.Remove(deleteNote);
+            this._notesDB.SaveChanges();
+
+            
+            List<DAL_SQLite.Models.Note> notes = this._notesDB.Notes.OrderBy(n => n.OrderBy).ToList();
+            int newOrderBy = 1; 
+            foreach(var note in notes)
+            {
+                note.OrderBy = newOrderBy; 
+                newOrderBy++;
+            }
+
             this._notesDB.SaveChanges();
         }
 
-        public int  getCountNote()
-        {
-            return this._notesDB.Notes.Count();
-        }
+        public int  getCountNote() => this._notesDB.Notes.Count();
+
+        public string GetNoteName(int NoteId) => _notesDB.Notes.Where(n => n.Id == NoteId).FirstOrDefault().Title ?? "Конспект не определен";
 
         public void EditNoteTitle(int NoteId, string newNoteTitle)
         {
